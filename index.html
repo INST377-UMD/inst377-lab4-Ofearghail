@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INST377 - Lab 4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 id="header">INST377 - Lab 4</h1>
+    <div class="row">
+        <div class="cellFormatting">
+            <form onsubmit="return false">
+                <label for="name">Name:</label>
+                <input id="name" type="text" required>
+                <input type="submit" value="Alert Me!" onclick="alertMe()">
+            </form>
+        </div>
+        <div class="cellFormatting">
+            <button onclick="changeColor()">Change Color</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cellFormatting">
+            <form onsubmit="return false">
+                <label for="testText">Test Text:</label>
+                <input id="testText" type="text" required>
+                <button id="validateText" type="button" onclick="textVerification(document.getElementById('testText').value)">Validate Text</button>
+            </form>
+        </div>
+        <div class="cellFormatting">
+            <button onclick="addText()">Add Text</button>
+        </div>
+    </div>
+    
+    <script>
+ 
+        let defaultColor = "rgb(240, 248, 255)"
+        var validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+        function alertMe() {
+            let name = document.getElementById("name").value
+
+            if (name == ""){
+
+            } else {
+                alert("Hi, " + name + "!")
+            }
+            
+            document.getElementById("name").value = ""
+        }
+
+        function changeColor() {
+            let newColor = "rgb(128, 0, 128)";
+            let currentBackgroundColor = getComputedStyle(document.body).backgroundColor;
+            
+            if (currentBackgroundColor == defaultColor) {
+                document.body.style.backgroundColor = newColor
+            } else {
+                document.body.style.backgroundColor = defaultColor
+            }
+        }
+
+        function addText() {
+            document.getElementById("header").append(" - Adding Text")
+        }
+
+        function textVerification(string){
+
+            if (validation.test(string)) {
+                alert("You're not that guy. (special characters detected)")
+            }
+
+            document.getElementById("testText").value = ""
+        }
+
+    </script>
+</body>
+</html>
